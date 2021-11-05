@@ -87,3 +87,13 @@ def h(p1, p2):  # heuristic using manhattan or 'L' distance
     return abs(x1 - x2) + abs(y1 - y2)
 
 
+def make_grid(rows, width):
+    grid = []
+    gap = width // rows
+    for i in range(rows):
+        grid.append([])
+        for j in range(rows):
+            node = Node(i, j, gap, rows)
+            grid[i].append(node)
+
+    return grid
