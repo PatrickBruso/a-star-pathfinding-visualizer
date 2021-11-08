@@ -107,4 +107,12 @@ def draw_grid(win, rows, width):
             pg.draw.line(win, GREY, (j * gap, 0), (j * gap, width))
 
 
+def draw(win, grid, rows, width):
+    win.fill(WHITE)
 
+    for row in grid:
+        for node in row:
+            node.draw(win)
+
+    draw_grid(win, rows, width)
+    pg.display.update()
