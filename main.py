@@ -54,25 +54,25 @@ class Node:
         return self.color == TURQUOISE
 
     def reset(self):
-        self.color == WHITE
+        return self.color == WHITE
 
     def make_start(self):
-        self.color == ORANGE
+        return self.color == ORANGE
 
     def make_closed(self):
-        self.color == RED
+        return self.color == RED
 
     def make_open(self):
-        self.color == GREEN
+        return self.color == GREEN
 
     def make_barrier(self):
-        self.color == BLACK
+        return self.color == BLACK
 
     def make_end(self):
-        self.color == TURQUOISE
+        return self.color == TURQUOISE
 
     def make_path(self):
-        self.color == PURPLE
+        return self.color == PURPLE
 
     def draw(self, win):
         pg.draw.rect(win, self.color, (self.x, self.y, self.width, self.width))
@@ -141,6 +141,7 @@ def main(win, width):
     run = True
     started = False
     while run:
+        draw(win, grid, ROWS, width)
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 run = False
@@ -152,11 +153,11 @@ def main(win, width):
                 pos = pg.mouse.get_pos()
                 row, col = get_clicked_pos(pos, ROWS, width)
                 node = grid[row][col]
-                if not start:
+                if not start and node != end:
                     start = node
                     start.make_start()
 
-                elif not end:
+                elif not end and node != start:
                     end = node
                     end.make_end()
 
@@ -167,3 +168,6 @@ def main(win, width):
                 pass
 
     pg.quit()
+
+
+main(WIN, WIDTH)
