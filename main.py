@@ -165,7 +165,14 @@ def main(win, width):
                     node.make_barrier()
 
             elif pg.mouse.get_pressed()[2]:
-                pass
+                pos = pg.mouse.get_pos()
+                row, col = get_clicked_pos(pos, ROWS, width)
+                spot = grid[row][col]
+                spot.reset()
+                if spot == start:
+                    start = None
+                if spot == end:
+                    end = None
 
     pg.quit()
 
