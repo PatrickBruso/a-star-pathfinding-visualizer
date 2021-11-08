@@ -56,6 +56,9 @@ class Node:
     def reset(self):
         self.color == WHITE
 
+    def make_start(self):
+        self.color == ORANGE
+
     def make_closed(self):
         self.color == RED
 
@@ -128,4 +131,39 @@ def get_clicked_pos(pos, rows, width):
     return row, col
 
 
+def main(win, width):
+    ROWS = 50
+    grid = make_grid(ROWS, width)
 
+    start = None
+    end = None
+
+    run = True
+    started = False
+    while run:
+        for event in pg.event.get():
+            if event.type == pg.QUIT:
+                run = False
+
+            if started:
+                continue
+
+            if pg.mouse.get_pressed()[0]:
+                pos = pg.mouse.get_pos()
+                row, col = get_clicked_pos(pos, ROWS, width)
+                node = grid[row][col]
+                if not start:
+                    start = node
+                    start.make_start()
+
+                elif not end:
+                    end = node
+                    end.make_end()
+
+                elif node != end and node != start:
+                    node.make_barrier()
+
+            elif pg.mouse.get_pressed()[2]:
+                pass
+
+    pg.quit()
