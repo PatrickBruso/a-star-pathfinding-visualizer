@@ -54,25 +54,25 @@ class Node:
         return self.color == TURQUOISE
 
     def reset(self):
-        return self.color == WHITE
+        self.color = WHITE
 
     def make_start(self):
-        return self.color == ORANGE
+        self.color = ORANGE
 
     def make_closed(self):
-        return self.color == RED
+        self.color = RED
 
     def make_open(self):
-        return self.color == GREEN
+        self.color = GREEN
 
     def make_barrier(self):
-        return self.color == BLACK
+        self.color = BLACK
 
     def make_end(self):
-        return self.color == TURQUOISE
+        self.color = TURQUOISE
 
     def make_path(self):
-        return self.color == PURPLE
+        self.color = PURPLE
 
     def draw(self, win):
         pg.draw.rect(win, self.color, (self.x, self.y, self.width, self.width))
